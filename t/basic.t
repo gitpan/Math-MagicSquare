@@ -4,7 +4,7 @@
 
 use Math::MagicSquare;
 
-print "1..6\n";
+print "1..7\n";
 
 print "Testing Math::MagicSquare-", $Math::MagicSquare::VERSION, "\n";
 
@@ -57,3 +57,8 @@ print "ok 5\n";
 $B->rotation();
 $B->print("Rotation Magic Square B:\n");
 print "ok 6\n";
+
+$B->print("Before reflection:\n");
+$B->reflection();
+$B->print("After reflection:\n");
+print "ok 7\n";

@@ -1,5 +1,5 @@
 #
-# MagicSquare.pm, version 1.30 Feb 1998
+# MagicSquare.pm, version 1.40 Apr 1998
 #
 # Copyright (c) 1998 Fabrizio Pivari Italy
 #
@@ -16,8 +16,8 @@ use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
-@EXPORT_OK=qw(new check print printhtml);
-$VERSION='1.30';
+@EXPORT_OK=qw(new check print printhtml rotation reflection);
+$VERSION='1.40';
 
 sub new {
   my $type = shift;
@@ -125,11 +125,28 @@ sub rotation {
     }
   for ($j=0;$j<$len;$j++) {
     for ($i=0;$i<$len;$i++) {
-    $self->[$j][$i]=$TMP[$len-1-$i][$j];
+      $self->[$j][$i]=$TMP[$len-1-$i][$j];
       }
     }
   }
 
+sub reflection {
+  my $self = shift;
+  my $i=0; my $j=0;
+  my @TMP;
+  my $len = scalar(@{$self});
+
+  for ($j=0;$j<$len;$j++) {
+    for ($i=0;$i<$len;$i++) {
+      $TMP[$j][$i]=$self->[$j][$i];
+      }
+    }
+  for ($j=0;$j<$len;$j++) {
+    for ($i=0;$i<$len;$i++) {
+      $self->[$i][$j]=$TMP[$i][$len-1-$j];
+      }
+    }
+  }
 
 1;
 
@@ -149,8 +166,10 @@ Math::MagicSquare - Magic Square Checker
                                  ...,
                                 [num,...,num]);
   $a->print("string");
-  $a->printhtml;
-  $a->check;
+  $a->printhtml();
+  $a->check();
+  $a->rotation();
+  $a->reflection();
 
 =head1 DESCRIPTION
 
@@ -205,6 +224,10 @@ Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
 
 Rotates the Magic Square of 90 degree clockwise
 
+=head2 reflection
+
+Reflect the Magic Square
+
 =head1 EXAMPLE
 
     use Math::MagicSquare;
@@ -218,6 +241,8 @@ Rotates the Magic Square of 90 degree clockwise
     if($i == 2) {print "This is a Magic Square.\n";}
     $A->rotation();
     $A->print("Rotation:\n");
+    $A->reflection();
+    $A->print("Reflection:\n");
 
  This is the output:
     Magic Square A:
@@ -246,6 +271,10 @@ Rotates the Magic Square of 90 degree clockwise
         4     3     8 
         9     5     1 
         2     7     6
+    Reflection:
+        8     3     4
+        1     5     9
+        6     7     2
 
 =head1 AUTHOR
 
