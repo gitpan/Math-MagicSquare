@@ -9,14 +9,15 @@
 
 package Math::MagicSquare;
 
+use Carp;
 use strict;
 use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 
 use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
-@EXPORT_OK=qw(new,check,print,printhtml);
-$VERSION='1.00';
+@EXPORT_OK=qw(new check print printhtml);
+$VERSION='1.01';
 
 sub new {
   my $type = shift;
@@ -27,6 +28,8 @@ sub new {
     push(@{$self}, [@{$_}]);
     $numelem += scalar(@{$_});
     }
+  croak "Math::MagicSquare::new(): number of rows and columns must be equal"
+    if ($numelem != $len*$len);
   bless $self, $type;
   }
 

@@ -1,2 +1,5 @@
 03/07/98 Version 1.00
 First public realese
+
+03/14/98 Version 1.01
+Added use of Carp routines to verify the number of rows and columns is equal
