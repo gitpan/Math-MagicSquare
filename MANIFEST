@@ -1,0 +1,9 @@
+README                           Guess what?
+MANIFEST                         This file
+TODO                             The To-Do list for the library
+HISTORY                          Version history
+Makefile.PL                      Perl Makefile builder
+MagicSquare.pm                   MagicSquare Perl Module
+MagicSquare.txt                  MagicSquare Perl Module documentation generated
+                                 from MagicSquare.pm with pod2text
+t/basic.t                        Test file

@@ -1,0 +1,89 @@
+NAME
+    Math::MagicSquare - Magic Square Checker
+
+SYNOPSIS
+      use Math::MagicSquare;
+
+      $a= Math::MagicSquare -> new ([num,...,num],
+                                     ...,
+                                    [num,...,num]);
+      $a->print("string");
+      $a->check;
+
+DESCRIPTION
+    The following methods are available:
+
+  new
+
+    Constructor arguments are a list of references to arrays of the same
+    length.
+
+        $a = Math::MagicSquare -> new ([num,...,num],
+                                        ...,
+                                       [num,...,num]);
+
+  check
+
+    This function can return 3 value
+
+    *   0: the Square is not Magic
+
+    *   1: the Square is a Semimagic Square (the sum of the rows and the columns
+        is equal)
+
+    *   2: the Square is a Magic Square (the sum of the rows, the columns and
+        the diagonals is equal)
+
+  print
+
+    Prints the Square on STDOUT. If the method has additional parameters,
+    these are printed before the Magic Square is printed.
+
+EXAMPLE
+        use Math::MagicSquare;
+
+        $A = Math::MagicSquare -> new ([8,1,6],
+                                       [3,5,7],
+                                       [4,9,2]);
+        $A->print("Magic Square A:\n");
+        $i=$A->check;
+        if($i == 2) {print "This is a Magic Square.\n";}
+
+     This is the output:
+        Magic Square A:
+            8     1     6 
+            3     5     7 
+            4     9     2 
+        This is a Magic Square.
+
+AUTHOR
+     Fabrizio Pivari pivari@geocities.com
+     member of ANFACE Software http://www.geocities.com/CapeCanaveral/Hangar/4794/
+
+Copyright
+     Copyright 1998, Fabrizio Pivari pivari@geocities.com
+     This library is free software; you can redistribute it and/or modify it under
+     the same terms as Perl itself. 
+
+Availability
+     The latest version of this library is likely to be available from:
+     http://www.geocities.com/CapeCanaveral/Lab/3469/
+     and at any CPAN mirror
+
+Information about Magic Square
+     Do you like Magic Square?
+     Do you want to know more information about Magic Square?
+     Try to visit
+
+    A very good introduction on Magic Square
+        http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
+
+    A whole collection of links and documents in Internet
+        http://www.pse.che.tohoku.ac.jp/~msuzuki/MagicSquare.html
+
+    A good collection of strange Magic Square
+        http://www.geocities.com/CapeCanaveral/Lab/3469/examples.html
+
+    The only Magic Square checker and gif maker in Internet (I think)
+        http://www.geocities.com/CapeCanaveral/Lab/3469/squaremaker.html
+

@@ -1,0 +1,43 @@
+What is Math-MagicSquare?
+The first purpose of this PERL module is to help you to check your Square.
+Is it Semimagic Square?
+Is it Magic Square?
+
+The second purpose of this PERL module is to help you to print your Square.
+At the moment the method available is print that prints the square on STDOUT.
+I'd like to add
+- printhtml (to print the square in HTML format)
+- pringif   (to print the square in a GIF image)
+- prinpdf   (to print the square in PDF format)
+
+What is a Magic Square?
+Do you like Magic Square?
+Do you want to know more information about Magic Square?
+Try to visit
+
+A very good introduction on Magic Square
+http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
+
+A whole collection of links and documents in Internet
+http://www.pse.che.tohoku.ac.jp/~msuzuki/MagicSquare.html
+
+A good collection of strange Magic Square
+http://www.geocities.com/CapeCanaveral/Lab/3469/examples.html
+
+The only Magic Square checker and gif maker in Internet (I think)
+http://www.geocities.com/CapeCanaveral/Lab/3469/squaremaker.html
+
+If you want to know more about this tool, you might want
+to read MagicSquare.txt. They came together with Math-MagicSquare!
+
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469/Math-MagicSquare.html
+
+Enjoy it!
+
+Send me your suggestions.
+
+Fabrizio Pivari
+mailto:pivari@geocities.com
+http://www.geocities.com/CapeCanaveral/Lab/3469/
+Member of ANFACE Software
+http://www.geocities.com/CapeCanaveral/Hangar/4794/

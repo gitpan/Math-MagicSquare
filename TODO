@@ -1,0 +1,5 @@
+More checks (Panmagic Square)
+
+- printhtml (to print the square in HTML format)
+- pringif   (to print the square in a GIF image)
+- prinpdf   (to print the square in PDF format)
