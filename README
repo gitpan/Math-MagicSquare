@@ -9,7 +9,7 @@ SYNOPSIS
                                     [num,...,num]);
       $a->print("string");
       $a->printhtml();
-      $a->printimage("jpeg|png");
+      $a->printimage();
       $a->check();
       $a->rotation();
       $a->reflection();
@@ -52,7 +52,7 @@ DESCRIPTION
 
   printimage
 
-    Prints the Square on STDOUT in jpeg or png format.
+    Prints the Square on STDOUT in png format.
 
   rotation
 
@@ -79,7 +79,7 @@ EXAMPLE
         $A->print("Rotation:\n");
         $A->reflection();
         $A->print("Reflection:\n");
-        $A->printimage("jpeg");
+        $A->printimage();
 
      This is the output:
         Magic Square A:
@@ -114,17 +114,19 @@ EXAMPLE
             6     7     2
 
 AUTHOR
-     Fabrizio Pivari pivari@hotmail.com
-     http://www.geocities.com/pivari/
+     Fabrizio Pivari fabrizio@pivari.com
+     http://www.pivari.com/
 
 Copyright
-     Copyright 2003, Fabrizio Pivari pivari@hotmail.com
+     Copyright 2003, Fabrizio Pivari fabrizio@pivari.com
      This library is free software; you can redistribute it and/or modify it under
      the same terms as Perl itself. 
+     Are you interested in a Windows cgi distribution?
+     Test http://www.pivari.com/squaremaker.html and contact me.
 
 Availability
      The latest version of this library is likely to be available from:
-     http://www.geocities.com/pivari/
+     http://www.pivari.com/CPAN/
      and at any CPAN mirror
 
 Information about Magic Square
@@ -133,7 +135,7 @@ Information about Magic Square
      Try to visit
 
     A very good introduction on Magic Square
-        http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
+        http://mathworld.wolfram.com/MagicSquare.html
 
     Whole collections of links and documents in Internet
         http://mathforum.org/alejandre/magic.square.html
@@ -142,4 +144,3 @@ Information about Magic Square
     A good collection of strange Magic Square
         http://www.geocities.com/pivari/examples.html
 
-    The only Magic Square checker and gif maker in Internet (I think)

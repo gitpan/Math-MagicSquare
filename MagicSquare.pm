@@ -1,8 +1,8 @@
 #
-# MagicSquare.pm, version 2.00 10 Jan 2003
+# MagicSquare.pm, version 2.01 24 Oct 2003
 #
 # Copyright (c) 2003 Fabrizio Pivari Italy
-# pivari@hotmail.com
+# fabrizio@pivari.com
 #
 # Free usage under the same Perl Licence condition.
 #
@@ -18,7 +18,7 @@ use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
 @EXPORT_OK=qw(new check print printhtml rotation reflection);
-$VERSION='2.00';
+$VERSION='2.01';
 
 sub new {
   my $type = shift;
@@ -117,13 +117,12 @@ sub printhtml {
 
 sub printimage {
   my $self = shift;
-  my $image = shift;
   my $i=0; my $j=0;
   my $len = scalar(@{$self});
 
   my $CELLGRIDSIZE = 31;
   my $GRIDSIZE = 8+($len -1)*2+$len*$CELLGRIDSIZE;
-  my  $im=new GD::Image($GRIDSIZE,$GRIDSIZE);
+  my $im=new GD::Image($GRIDSIZE,$GRIDSIZE);
   my $bg=$im->colorAllocate(255,255,255);
   my $fg=$im->colorAllocate(0,0,0);
 
@@ -173,10 +172,8 @@ sub printimage {
       $y1 = $y1 + $CELLGRIDSIZE + 2;
       } 
 
-   if(($image ne "jpeg") && ($image ne "png"))
-     {croak "Math::MagicSquare::printimage(): the supported parameters are: jpeg and png"}
    binmode STDOUT;
-   print $im -> $image;
+   print $im -> png;
    }
 
 sub rotation {
@@ -234,7 +231,7 @@ Math::MagicSquare - Magic Square Checker
                                 [num,...,num]);
   $a->print("string");
   $a->printhtml();
-  $a->printimage("jpeg|png");
+  $a->printimage;
   $a->check();
   $a->rotation();
   $a->reflection();
@@ -290,7 +287,7 @@ Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
 
 =head2 printimage
 
-Prints the Square on STDOUT in jpeg or png format.
+Prints the Square on STDOUT in png format.
 
 =head2 rotation
 
@@ -319,7 +316,7 @@ GD perl module.
     $A->print("Rotation:\n");
     $A->reflection();
     $A->print("Reflection:\n");
-    $A->printimage("jpeg");
+    $A->printimage;
 
  This is the output:
     Magic Square A:
@@ -355,14 +352,16 @@ GD perl module.
 
 =head1 AUTHOR
 
- Fabrizio Pivari pivari@hotmail.com
- http://www.geocities.com/pivari/
+ Fabrizio Pivari fabrizio@pivari.com
+ http://www.pivari.com/
 
 =head1 Copyright 
 
  Copyright 2003, Fabrizio Pivari pivari@hotmail.com
  This library is free software; you can redistribute it and/or modify it under
  the same terms as Perl itself. 
+ Are you interested in a Windows cgi distribution?
+ Test http://www.pivari.com/squaremaker.html and contact me.
 
 =head1 Availability
 
@@ -380,7 +379,7 @@ GD perl module.
 
 =item A very good introduction on Magic Square
 
-http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
+http://mathworld.wolfram.com/MagicSquare.html
 
 =item Whole collections of links and documents in Internet
 
@@ -390,8 +389,6 @@ http://mathforum.org/te/exchange/hosted/suzuki/MagicSquare.html
 =item A good collection of strange Magic Square
 
 http://www.geocities.com/pivari/examples.html
-
-=item The only Magic Square checker and gif maker in Internet (I think)
 
 =back
 
