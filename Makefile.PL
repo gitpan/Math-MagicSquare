@@ -11,11 +11,9 @@ use ExtUtils::MakeMaker;
 use Config;
 
 WriteMakefile(
-	       AUTHOR       => 'Fabrizio Pivari (fabrizio@pivari.com)'
+	       AUTHOR       => 'Fabrizio Pivari (fabrizio@pivari.com)',
                NAME         => 'Math::MagicSquare',
-               PREREQ_PM    => {
-            	'GD'	=> '0'
-                }
+               PREREQ_PM    => {'GD'	=> '0'},
                LINKTYPE     => '$(INST_PM)',
                VERSION_FROM => 'MagicSquare.pm',
                dist         => { SUFFIX => 'gz', COMPRESS => 'gzip -f' },

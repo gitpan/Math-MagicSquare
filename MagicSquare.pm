@@ -1,5 +1,5 @@
 #
-# MagicSquare.pm, version 2.01 24 Oct 2003
+# MagicSquare.pm, version 2.03 24 Oct 2003
 #
 # Copyright (c) 2003 Fabrizio Pivari Italy
 # fabrizio@pivari.com
@@ -18,7 +18,7 @@ use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
 @EXPORT_OK=qw(new check print printhtml rotation reflection);
-$VERSION='2.01';
+$VERSION='2.03';
 
 sub new {
   my $type = shift;
