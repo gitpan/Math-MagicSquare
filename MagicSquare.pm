@@ -16,8 +16,8 @@ use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
-@EXPORT_OK=qw(new check print printhtml);
-$VERSION='1.01';
+@EXPORT_OK=qw(new check print);
+$VERSION='1.10';
 
 sub new {
   my $type = shift;
@@ -59,18 +59,27 @@ sub check {
       return(0);
       }
     }
-# Check diagonals
-  for ($i=0;$i<$len;$i++) {
-    $diag1+=$self->[$i][($i+0)%$len];
-    $diag2+=$self->[$len-1-$i][($i+0)%$len];
-    }
-  if ($diag1 != $sum || $diag2 != $sum) {
+# Check diagonals and broken diagonals
+  for ($j=0;$j<$len;$j++) {
+    $i=0; $diag1=0; $diag2=0;
+    for ($i=0;$i<$len;$i++) {
+      $diag1+=$self->[$i][($i+$j)%$len];
+      $diag2+=$self->[$len-1-$i][($i+$j)%$len];
+      }
+    if ($j == 0) {
+      if ($diag1 != $sum || $diag2 != $sum) {
 # This is a Semimagic Square
-    return(1);
-    } else {
+        return(1);
+        }
+      } else {
+      if ($diag1 != $sum || $diag2 != $sum) {
 # This is a Magic Square
-    return(2);
+        return(2);
+        }
+      }
     }
+# This is a Panmagic Square
+  return(3);
   }
 
 sub print {
@@ -121,7 +130,7 @@ length.
 
 =head2 check
 
-This function can return 3 value
+This function can return 4 value
 
 =over
 
@@ -138,6 +147,11 @@ is equal)
 
 B<2:> the Square is a B<Magic Square> (the sum of the rows, the columns and the
 diagonals is equal)
+
+=item *
+
+B<3:> the Square ia B<Panmagic Square> (the sum of the rows, the columns, the
+diagonals and the broken diagonals is equal)
 
 =back
 

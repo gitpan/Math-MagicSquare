@@ -36,17 +36,20 @@ print "ok 2\n";
 $i=$B->check;
 if ($i == 0) {print "This isn't Magic\n";}
 elsif ($i == 1) {print "This is a Semimagic Square\n";}
-else {print "This is a Magic Square\n";}
+elsif ($i == 2) {print "This is a Magic Square\n";}
+else {print "This is a Panmagic Square\n";}
 print "ok 3\n";
 
 $i=$C->check;
 if ($i == 0) {print "This isn't Magic\n"}
 elsif ($i == 1) {print "This is a Semimagic Square\n";}
-else {print "This is a Magic Square\n";}
+elsif ($i == 2) {print "This is a Magic Square\n";}
+else {print "This is a Panmagic Square\n";}
 print "ok 4\n";
 
 $i=$D->check;
 if ($i == 0) {print "This isn't Magic\n";}
 elsif ($i == 1) {print "This is a Semimagic Square\n";}
-else {print "This is a Magic Square\n";}
+elsif ($i == 2) {print "This is a Magic Square\n";}
+else {print "This is a Panmagic Square\n";}
 print "ok 5\n";

@@ -24,7 +24,7 @@ DESCRIPTION
 
   check
 
-    This function can return 3 value
+    This function can return 4 value
 
     *   0: the Square is not Magic
 
@@ -33,6 +33,9 @@ DESCRIPTION
 
     *   2: the Square is a Magic Square (the sum of the rows, the columns and
         the diagonals is equal)
+
+    *   3: the Square ia Panmagic Square (the sum of the rows, the columns, the
+        diagonals and the broken diagonals is equal)
 
   print
 

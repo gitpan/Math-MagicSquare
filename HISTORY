@@ -3,3 +3,6 @@ First public realese
 
 03/14/98 Version 1.01
 Added use of Carp routines to verify the number of rows and columns is equal
+
+03/21/98 Version 1.10
+Added Panmagic Square test in check method

@@ -2,6 +2,7 @@ What is Math::MagicSquare?
 The first purpose of this PERL module is to help you to check your Square.
 Is it a Semimagic Square?
 Is it a Magic Square?
+Is it a Panmagic Square?
 
 The second purpose of this PERL module is to help you to print your Square.
 At the moment the method available is 'print' that prints the square on STDOUT.
