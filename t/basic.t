@@ -4,7 +4,7 @@
 
 use Math::MagicSquare;
 
-print "1..5\n";
+print "1..6\n";
 
 print "Testing Math::MagicSquare-", $Math::MagicSquare::VERSION, "\n";
 
@@ -53,3 +53,7 @@ elsif ($i == 1) {print "This is a Semimagic Square\n";}
 elsif ($i == 2) {print "This is a Magic Square\n";}
 else {print "This is a Panmagic Square\n";}
 print "ok 5\n";
+
+$B->rotation();
+$B->print("Rotation Magic Square B:\n");
+print "ok 6\n";

@@ -47,6 +47,10 @@ DESCRIPTION
 
     Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
 
+  rotation
+
+    Rotates the Magic Square of 90 degree clockwise
+
 EXAMPLE
         use Math::MagicSquare;
 
@@ -57,6 +61,8 @@ EXAMPLE
         $A->printhtml;
         $i=$A->check;
         if($i == 2) {print "This is a Magic Square.\n";}
+        $A->rotation();
+        $A->print("Rotation:\n");
 
      This is the output:
         Magic Square A:
@@ -81,6 +87,10 @@ EXAMPLE
         </TR>
         </TABLE>
         This is a Magic Square.
+        Rotation:
+            4     3     8 
+            9     5     1 
+            2     7     6
 
 AUTHOR
      Fabrizio Pivari pivari@geocities.com

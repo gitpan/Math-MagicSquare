@@ -1,5 +1,5 @@
 #
-# MagicSquare.pm, version 1.00 Feb 1998
+# MagicSquare.pm, version 1.30 Feb 1998
 #
 # Copyright (c) 1998 Fabrizio Pivari Italy
 #
@@ -17,7 +17,7 @@ use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
 @EXPORT_OK=qw(new check print printhtml);
-$VERSION='1.20';
+$VERSION='1.30';
 
 sub new {
   my $type = shift;
@@ -84,12 +84,13 @@ sub check {
 
 sub print {
   my $self = shift;
-  my $row=""; my $col="";
+  my $i=0; my $j=0;
+  my $len = scalar(@{$self});
     
   print @_ if scalar(@_);
-  for $row (@{$self}) {
-    for $col (@{$row}) {
-      printf "%5d ", $col;
+  for ($j=0;$j<$len;$j++) {
+    for ($i=0;$i<$len;$i++) {
+      printf "%5d ", $self->[$j][$i];
       }
     print "\n";
     }
@@ -97,17 +98,36 @@ sub print {
 
 sub printhtml {
   my $self = shift;
-  my $row=""; my $col="";
+  my $i=0; my $j=0;
+  my $len = scalar(@{$self});
 
   print qq!<TABLE border=3 width="2" height="2" cellpadding=1 cellspacing=1>\n!;
-  for $row (@{$self}) {
+  for ($j=0;$j<$len;$j++) {
     print "<TR>\n";
-    for $col (@{$row}) {
-      print "<TD align=right><FONT size=+2><B>$col</B></font></TD>\n";
+    for ($i=0;$i<$len;$i++) {
+      print "<TD align=right><FONT size=+2><B>$self->[$j][$i]</B></font></TD>\n";
       }
     print "</TR>\n";
     }
   print "</TABLE>\n";
+  }
+
+sub rotation {
+  my $self = shift;
+  my $i=0; my $j=0;
+  my @TMP;
+  my $len = scalar(@{$self});
+
+  for ($j=0;$j<$len;$j++) {
+    for ($i=0;$i<$len;$i++) {
+      $TMP[$j][$i]=$self->[$j][$i];
+      }
+    }
+  for ($j=0;$j<$len;$j++) {
+    for ($i=0;$i<$len;$i++) {
+    $self->[$j][$i]=$TMP[$len-1-$i][$j];
+      }
+    }
   }
 
 
@@ -181,6 +201,10 @@ these are printed before the Magic Square is printed.
 
 Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
 
+=head2 rotation
+
+Rotates the Magic Square of 90 degree clockwise
+
 =head1 EXAMPLE
 
     use Math::MagicSquare;
@@ -192,6 +216,8 @@ Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
     $A->printhtml;
     $i=$A->check;
     if($i == 2) {print "This is a Magic Square.\n";}
+    $A->rotation();
+    $A->print("Rotation:\n");
 
  This is the output:
     Magic Square A:
@@ -216,6 +242,10 @@ Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
     </TR>
     </TABLE>
     This is a Magic Square.
+    Rotation:
+        4     3     8 
+        9     5     1 
+        2     7     6
 
 =head1 AUTHOR
 
