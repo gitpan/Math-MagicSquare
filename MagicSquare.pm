@@ -1,5 +1,5 @@
 #
-# MagicSquare.pm, version 2.03 24 Oct 2003
+# MagicSquare.pm, version 2.04 13 Dec 2003
 #
 # Copyright (c) 2003 Fabrizio Pivari Italy
 # fabrizio@pivari.com
@@ -18,7 +18,7 @@ use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
 @EXPORT_OK=qw(new check print printhtml rotation reflection);
-$VERSION='2.03';
+$VERSION='2.04';
 
 sub new {
   my $type = shift;
@@ -220,7 +220,7 @@ __END__
 
 =head1 NAME
 
-Math::MagicSquare - Magic Square Checker
+Math::MagicSquare - Magic Square Checker and Designer
 
 =head1 SYNOPSIS
 
@@ -231,7 +231,7 @@ Math::MagicSquare - Magic Square Checker
                                 [num,...,num]);
   $a->print("string");
   $a->printhtml();
-  $a->printimage;
+  $a->printimage();
   $a->check();
   $a->rotation();
   $a->reflection();
@@ -309,14 +309,14 @@ GD perl module.
                                    [3,5,7],
                                    [4,9,2]);
     $A->print("Magic Square A:\n");
-    $A->printhtml;
-    $i=$A->check;
+    $A->printhtml();
+    $i=$A->check();
     if($i == 2) {print "This is a Magic Square.\n";}
     $A->rotation();
     $A->print("Rotation:\n");
     $A->reflection();
     $A->print("Reflection:\n");
-    $A->printimage;
+    $A->printimage();
 
  This is the output:
     Magic Square A:
@@ -357,7 +357,7 @@ GD perl module.
 
 =head1 Copyright 
 
- Copyright 2003, Fabrizio Pivari pivari@hotmail.com
+ Copyright 2003, Fabrizio Pivari fabrizio@pivari.com
  This library is free software; you can redistribute it and/or modify it under
  the same terms as Perl itself. 
  Are you interested in a Windows cgi distribution?
@@ -366,7 +366,7 @@ GD perl module.
 =head1 Availability
 
  The latest version of this library is likely to be available from:
- http://www.geocities.com/pivari/
+ http://www.pivari.com/magicsquare.html
  and at any CPAN mirror
 
 =head1 Information about Magic Square

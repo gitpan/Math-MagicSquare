@@ -27,3 +27,6 @@ Added PREREQ_PM  => {'GD' => '0'} and AUTHOR in Makefile.PL
 
 10/24/2003 Version 2.03
 An error inside Makefile.PL
+
+12/13/2003 Version 2.04
+An error inside tests

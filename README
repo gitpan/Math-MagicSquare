@@ -1,5 +1,5 @@
 NAME
-    Math::MagicSquare - Magic Square Checker
+    Math::MagicSquare - Magic Square Checker and Designer
 
 SYNOPSIS
       use Math::MagicSquare;
@@ -119,14 +119,14 @@ AUTHOR
 
 Copyright
      Copyright 2003, Fabrizio Pivari fabrizio@pivari.com
-     This library is free software; you can redistribute it and/or modify it under
-     the same terms as Perl itself. 
+     This library is free software; you can redistribute it and/or modify it
+     under the same terms as Perl itself. 
      Are you interested in a Windows cgi distribution?
      Test http://www.pivari.com/squaremaker.html and contact me.
 
 Availability
      The latest version of this library is likely to be available from:
-     http://www.pivari.com/CPAN/
+     http://www.pivari.com/magicsquare.html
      and at any CPAN mirror
 
 Information about Magic Square
