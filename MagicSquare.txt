@@ -8,6 +8,7 @@ SYNOPSIS
                                      ...,
                                     [num,...,num]);
       $a->print("string");
+      $a->printhtml;
       $a->check;
 
 DESCRIPTION
@@ -42,6 +43,10 @@ DESCRIPTION
     Prints the Square on STDOUT. If the method has additional parameters,
     these are printed before the Magic Square is printed.
 
+  printhtml
+
+    Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
+
 EXAMPLE
         use Math::MagicSquare;
 
@@ -49,6 +54,7 @@ EXAMPLE
                                        [3,5,7],
                                        [4,9,2]);
         $A->print("Magic Square A:\n");
+        $A->printhtml;
         $i=$A->check;
         if($i == 2) {print "This is a Magic Square.\n";}
 
@@ -57,6 +63,23 @@ EXAMPLE
             8     1     6 
             3     5     7 
             4     9     2 
+        <TABLE border=3 width="2" height="2" cellpadding=1 cellspacing=1>
+        <TR>
+        <TD align=right><FONT size=+2><B>8</B></font></TD>
+        <TD align=right><FONT size=+2><B>1</B></font></TD>
+        <TD align=right><FONT size=+2><B>6</B></font></TD>
+        </TR>
+        <TR>
+        <TD align=right><FONT size=+2><B>3</B></font></TD>
+        <TD align=right><FONT size=+2><B>5</B></font></TD>
+        <TD align=right><FONT size=+2><B>7</B></font></TD>
+        </TR>
+        <TR>
+        <TD align=right><FONT size=+2><B>4</B></font></TD>
+        <TD align=right><FONT size=+2><B>9</B></font></TD>
+        <TD align=right><FONT size=+2><B>2</B></font></TD>
+        </TR>
+        </TABLE>
         This is a Magic Square.
 
 AUTHOR

@@ -16,8 +16,8 @@ use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
-@EXPORT_OK=qw(new check print);
-$VERSION='1.10';
+@EXPORT_OK=qw(new check print printhtml);
+$VERSION='1.20';
 
 sub new {
   my $type = shift;
@@ -95,6 +95,22 @@ sub print {
     }
   }
 
+sub printhtml {
+  my $self = shift;
+  my $row=""; my $col="";
+
+  print qq!<TABLE border=3 width="2" height="2" cellpadding=1 cellspacing=1>\n!;
+  for $row (@{$self}) {
+    print "<TR>\n";
+    for $col (@{$row}) {
+      print "<TD align=right><FONT size=+2><B>$col</B></font></TD>\n";
+      }
+    print "</TR>\n";
+    }
+  print "</TABLE>\n";
+  }
+
+
 1;
 
 __END__
@@ -113,6 +129,7 @@ Math::MagicSquare - Magic Square Checker
                                  ...,
                                 [num,...,num]);
   $a->print("string");
+  $a->printhtml;
   $a->check;
 
 =head1 DESCRIPTION
@@ -160,6 +177,10 @@ diagonals and the broken diagonals is equal)
 Prints the Square on STDOUT. If the method has additional parameters,
 these are printed before the Magic Square is printed.
 
+=head2 printhtml
+
+Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
+
 =head1 EXAMPLE
 
     use Math::MagicSquare;
@@ -168,6 +189,7 @@ these are printed before the Magic Square is printed.
                                    [3,5,7],
                                    [4,9,2]);
     $A->print("Magic Square A:\n");
+    $A->printhtml;
     $i=$A->check;
     if($i == 2) {print "This is a Magic Square.\n";}
 
@@ -176,6 +198,23 @@ these are printed before the Magic Square is printed.
         8     1     6 
         3     5     7 
         4     9     2 
+    <TABLE border=3 width="2" height="2" cellpadding=1 cellspacing=1>
+    <TR>
+    <TD align=right><FONT size=+2><B>8</B></font></TD>
+    <TD align=right><FONT size=+2><B>1</B></font></TD>
+    <TD align=right><FONT size=+2><B>6</B></font></TD>
+    </TR>
+    <TR>
+    <TD align=right><FONT size=+2><B>3</B></font></TD>
+    <TD align=right><FONT size=+2><B>5</B></font></TD>
+    <TD align=right><FONT size=+2><B>7</B></font></TD>
+    </TR>
+    <TR>
+    <TD align=right><FONT size=+2><B>4</B></font></TD>
+    <TD align=right><FONT size=+2><B>9</B></font></TD>
+    <TD align=right><FONT size=+2><B>2</B></font></TD>
+    </TR>
+    </TABLE>
     This is a Magic Square.
 
 =head1 AUTHOR

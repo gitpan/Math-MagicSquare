@@ -30,7 +30,7 @@ $D = Math::MagicSquare -> new ([1,1],
 $A->print("Magic Square A:\n");
 print "ok 1\n";
 
-$B->print("Magic Square B:\n");
+$B->printhtml();
 print "ok 2\n";
 
 $i=$B->check;
