@@ -1,4 +1,3 @@
 More checks (Bimagic Square)
 
-- pringif   (to print the square in a GIF image)
-- prinpdf   (to print the square in PDF format)
+- printswf   (to print the square in SWF format)

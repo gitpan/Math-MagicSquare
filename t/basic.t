@@ -27,7 +27,7 @@ $C = Math::MagicSquare -> new ([1,4],
 $D = Math::MagicSquare -> new ([1,1],
                                [1,1]);
 
-$A->print("Magic Square A:\n");
+$A->print("Magic Square A:");
 print "ok 1\n";
 
 $B->printhtml();

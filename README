@@ -1,50 +1,145 @@
-What is Math::MagicSquare?
-The first purpose of this PERL module is to help you to check your Square.
-Is it a Semimagic Square?
-Is it a Magic Square?
+NAME
+    Math::MagicSquare - Magic Square Checker
 
-The second purpose of this PERL module is to help you to print your Square.
-At the moment the method available is 'print' that prints the square on STDOUT
-and 'printhtml' that prints the square in HTML format.
-I'd like to add
-- printgif   (to print the square in a GIF image)
-- printpdf   (to print the square in PDF format)
+SYNOPSIS
+      use Math::MagicSquare;
 
-The third purpose of this PERL module is to help you to manipulate your Square.
-At the moment the available methods are 'rotation' that rotates your Square of
-90 degree clockwise and 'reflection' that reflect your Square.
+      $a= Math::MagicSquare -> new ([num,...,num],
+                                     ...,
+                                    [num,...,num]);
+      $a->print("string");
+      $a->printhtml();
+      $a->printimage("jpeg|png");
+      $a->check();
+      $a->rotation();
+      $a->reflection();
 
-Where can I find the last release of Math::MagicSquare?
-http://www.geocities.com/CapeCanaveral/Lab/3469/
+DESCRIPTION
+    The following methods are available:
 
-What is a Magic Square?
-Do you like Magic Square?
-Do you want to know more information about Magic Square?
-Try to visit
+  new
 
-A very good introduction on Magic Square
-http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
+    Constructor arguments are a list of references to arrays of the same
+    length.
 
-A whole collection of links and documents in Internet
-http://www.pse.che.tohoku.ac.jp/~msuzuki/MagicSquare.html
+        $a = Math::MagicSquare -> new ([num,...,num],
+                                        ...,
+                                       [num,...,num]);
 
-A good collection of strange Magic Square
-http://www.geocities.com/CapeCanaveral/Lab/3469/examples.html
+  check
 
-The only Magic Square checker and gif maker in Internet (I think)
-http://www.geocities.com/CapeCanaveral/Lab/3469/squaremaker.html
+    This function can return 4 value
 
-If you want to know more about this tool, you might want
-to read MagicSquare.txt. They came together with Math-MagicSquare!
+    *   0: the Square is not Magic
 
-Home: http://www.geocities.com/CapeCanaveral/Lab/3469/Math-MagicSquare.html
+    *   1: the Square is a Semimagic Square (the sum of the rows and the
+        columns is equal)
 
-Enjoy it!
+    *   2: the Square is a Magic Square (the sum of the rows, the columns
+        and the diagonals is equal)
 
-Send me your suggestions.
+    *   3: the Square ia Panmagic Square (the sum of the rows, the columns,
+        the diagonals and the broken diagonals is equal)
 
-Fabrizio Pivari
-mailto:pivari@geocities.com
-http://www.geocities.com/CapeCanaveral/Lab/3469/
-Member of ANFACE Software
-http://www.geocities.com/CapeCanaveral/Hangar/4794/
+  print
+
+    Prints the Square on STDOUT. If the method has additional parameters,
+    these are printed before the Magic Square is printed.
+
+  printhtml
+
+    Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
+
+  printimage
+
+    Prints the Square on STDOUT in jpeg or png format.
+
+  rotation
+
+    Rotates the Magic Square of 90 degree clockwise
+
+  reflection
+
+    Reflect the Magic Square
+
+REQUIRED
+    GD perl module.
+
+EXAMPLE
+        use Math::MagicSquare;
+
+        $A = Math::MagicSquare -> new ([8,1,6],
+                                       [3,5,7],
+                                       [4,9,2]);
+        $A->print("Magic Square A:\n");
+        $A->printhtml;
+        $i=$A->check;
+        if($i == 2) {print "This is a Magic Square.\n";}
+        $A->rotation();
+        $A->print("Rotation:\n");
+        $A->reflection();
+        $A->print("Reflection:\n");
+        $A->printimage("jpeg");
+
+     This is the output:
+        Magic Square A:
+            8     1     6 
+            3     5     7 
+            4     9     2 
+        <TABLE border=3 width="2" height="2" cellpadding=1 cellspacing=1>
+        <TR>
+        <TD align=right><FONT size=+2><B>8</B></font></TD>
+        <TD align=right><FONT size=+2><B>1</B></font></TD>
+        <TD align=right><FONT size=+2><B>6</B></font></TD>
+        </TR>
+        <TR>
+        <TD align=right><FONT size=+2><B>3</B></font></TD>
+        <TD align=right><FONT size=+2><B>5</B></font></TD>
+        <TD align=right><FONT size=+2><B>7</B></font></TD>
+        </TR>
+        <TR>
+        <TD align=right><FONT size=+2><B>4</B></font></TD>
+        <TD align=right><FONT size=+2><B>9</B></font></TD>
+        <TD align=right><FONT size=+2><B>2</B></font></TD>
+        </TR>
+        </TABLE>
+        This is a Magic Square.
+        Rotation:
+            4     3     8 
+            9     5     1 
+            2     7     6
+        Reflection:
+            8     3     4
+            1     5     9
+            6     7     2
+
+AUTHOR
+     Fabrizio Pivari pivari@hotmail.com
+     http://www.geocities.com/pivari/
+
+Copyright
+     Copyright 2003, Fabrizio Pivari pivari@hotmail.com
+     This library is free software; you can redistribute it and/or modify it under
+     the same terms as Perl itself. 
+
+Availability
+     The latest version of this library is likely to be available from:
+     http://www.geocities.com/pivari/
+     and at any CPAN mirror
+
+Information about Magic Square
+     Do you like Magic Square?
+     Do you want to know more information about Magic Square?
+     Try to visit
+
+    A very good introduction on Magic Square
+        http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
+
+    Whole collections of links and documents in Internet
+        http://mathforum.org/alejandre/magic.square.html
+        http://mathforum.org/te/exchange/hosted/suzuki/MagicSquare.html
+
+    A good collection of strange Magic Square
+        http://www.geocities.com/pivari/examples.html
+
+    The only Magic Square checker and gif maker in Internet (I think)

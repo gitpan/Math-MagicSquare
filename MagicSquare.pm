@@ -1,15 +1,16 @@
 #
-# MagicSquare.pm, version 1.40 Apr 1998
+# MagicSquare.pm, version 2.00 10 Jan 2003
 #
-# Copyright (c) 1998 Fabrizio Pivari Italy
+# Copyright (c) 2003 Fabrizio Pivari Italy
+# pivari@hotmail.com
 #
 # Free usage under the same Perl Licence condition.
 #
 
-
 package Math::MagicSquare;
 
 use Carp;
+use GD;
 use strict;
 use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 
@@ -17,7 +18,7 @@ use Exporter();
 @ISA= qw(Exporter);
 @EXPORT=qw();
 @EXPORT_OK=qw(new check print printhtml rotation reflection);
-$VERSION='1.40';
+$VERSION='2.00';
 
 sub new {
   my $type = shift;
@@ -84,9 +85,11 @@ sub check {
 
 sub print {
   my $self = shift;
+  my $initialtext = shift;
   my $i=0; my $j=0;
   my $len = scalar(@{$self});
     
+  print "$initialtext\n" if $initialtext;
   print @_ if scalar(@_);
   for ($j=0;$j<$len;$j++) {
     for ($i=0;$i<$len;$i++) {
@@ -111,6 +114,70 @@ sub printhtml {
     }
   print "</TABLE>\n";
   }
+
+sub printimage {
+  my $self = shift;
+  my $image = shift;
+  my $i=0; my $j=0;
+  my $len = scalar(@{$self});
+
+  my $CELLGRIDSIZE = 31;
+  my $GRIDSIZE = 8+($len -1)*2+$len*$CELLGRIDSIZE;
+  my  $im=new GD::Image($GRIDSIZE,$GRIDSIZE);
+  my $bg=$im->colorAllocate(255,255,255);
+  my $fg=$im->colorAllocate(0,0,0);
+
+   # GRID
+#   $im->transparent($bg);
+   $im->filledRectangle(0,0,255,255,$bg);
+   $im->filledRectangle(0,0,4,$GRIDSIZE,$fg);
+   $im->filledRectangle(0,0,$GRIDSIZE,4,$fg);
+   my $tmp = $GRIDSIZE -5;
+   $im->filledRectangle($tmp,0,$GRIDSIZE,$GRIDSIZE,$fg);
+   $im->filledRectangle(0,$tmp,$GRIDSIZE,$GRIDSIZE,$fg);
+   my $xy = 4 + $CELLGRIDSIZE;
+   my $xy2 = $xy +2;
+   for (1..$len-1)
+      {
+      $im->filledRectangle($xy,0,$xy2,$GRIDSIZE,$fg);
+      $im->filledRectangle(0,$xy,$GRIDSIZE,$xy2,$fg);
+      $xy = $xy2 + $CELLGRIDSIZE;
+      $xy2 = $xy + 2;
+      }
+
+   # NUMBERS
+   my $x1 = 4 + 8;
+   my $y1 = 4 + 9;
+   $j=0;
+   for ($j=0;$j<$len;$j++)
+      {
+      $i=0;
+      for ($i=0;$i<$len;$i++)
+         {
+         # to hit the centre with numbers < -9
+         if ($self->[$j][$i] < -9) { $x1 = $x1 - 3; }
+         # to hit the centre with numbers between -9 and -1
+         if ($self->[$j][$i] < 0 && $self->[$j][$i] > -10) { $x1 = $x1 - 2; }
+         # to hit the centre with numbers between 0 and 9
+         if ($self->[$j][$i] < 10 && $self->[$j][$i] >= 0) { $x1 = $x1 + 4; }
+         # to hit the centre with numbers > 99
+         if ($self->[$j][$i] > 99) { $x1 = $x1 - 4; }
+         $im->string(gdLargeFont,$x1,$y1,"$self->[$j][$i]",$fg);
+         $x1 = $x1 + $CELLGRIDSIZE + 2;
+         if ($self->[$j][$i] < -9) { $x1 = $x1 + 3; }
+         if ($self->[$j][$i] < 0 && $self->[$j][$i] > -10) { $x1 = $x1 + 2; }
+         if ($self->[$j][$i] < 10 && $self->[$j][$i] >= 0) { $x1 = $x1 - 4; }
+         if ($self->[$j][$i] > 99) { $x1 = $x1 + 4; }
+         }
+      $x1 = 4 + 8;
+      $y1 = $y1 + $CELLGRIDSIZE + 2;
+      } 
+
+   if(($image ne "jpeg") && ($image ne "png"))
+     {croak "Math::MagicSquare::printimage(): the supported parameters are: jpeg and png"}
+   binmode STDOUT;
+   print $im -> $image;
+   }
 
 sub rotation {
   my $self = shift;
@@ -167,6 +234,7 @@ Math::MagicSquare - Magic Square Checker
                                 [num,...,num]);
   $a->print("string");
   $a->printhtml();
+  $a->printimage("jpeg|png");
   $a->check();
   $a->rotation();
   $a->reflection();
@@ -220,6 +288,10 @@ these are printed before the Magic Square is printed.
 
 Prints the Square on STDOUT in an HTML format (exactly a inside a TABLE)
 
+=head2 printimage
+
+Prints the Square on STDOUT in jpeg or png format.
+
 =head2 rotation
 
 Rotates the Magic Square of 90 degree clockwise
@@ -227,6 +299,10 @@ Rotates the Magic Square of 90 degree clockwise
 =head2 reflection
 
 Reflect the Magic Square
+
+=head1 REQUIRED
+
+GD perl module.
 
 =head1 EXAMPLE
 
@@ -243,6 +319,7 @@ Reflect the Magic Square
     $A->print("Rotation:\n");
     $A->reflection();
     $A->print("Reflection:\n");
+    $A->printimage("jpeg");
 
  This is the output:
     Magic Square A:
@@ -278,19 +355,19 @@ Reflect the Magic Square
 
 =head1 AUTHOR
 
- Fabrizio Pivari pivari@geocities.com
- member of ANFACE Software http://www.geocities.com/CapeCanaveral/Hangar/4794/
+ Fabrizio Pivari pivari@hotmail.com
+ http://www.geocities.com/pivari/
 
 =head1 Copyright 
 
- Copyright 1998, Fabrizio Pivari pivari@geocities.com
+ Copyright 2003, Fabrizio Pivari pivari@hotmail.com
  This library is free software; you can redistribute it and/or modify it under
  the same terms as Perl itself. 
 
 =head1 Availability
 
  The latest version of this library is likely to be available from:
- http://www.geocities.com/CapeCanaveral/Lab/3469/
+ http://www.geocities.com/pivari/
  and at any CPAN mirror
 
 =head1 Information about Magic Square
@@ -305,17 +382,16 @@ Reflect the Magic Square
 
 http://www.astro.virginia.edu/~eww6n/math/MagicSquare.html
 
-=item A whole collection of links and documents in Internet
+=item Whole collections of links and documents in Internet
 
-http://www.pse.che.tohoku.ac.jp/~msuzuki/MagicSquare.html
+http://mathforum.org/alejandre/magic.square.html
+http://mathforum.org/te/exchange/hosted/suzuki/MagicSquare.html
 
 =item A good collection of strange Magic Square
 
-http://www.geocities.com/CapeCanaveral/Lab/3469/examples.html
+http://www.geocities.com/pivari/examples.html
 
 =item The only Magic Square checker and gif maker in Internet (I think)
-
-http://www.geocities.com/CapeCanaveral/Lab/3469/squaremaker.html
 
 =back
 
