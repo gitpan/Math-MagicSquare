@@ -10,10 +10,14 @@
 use ExtUtils::MakeMaker;
 use Config;
 
-&WriteMakefile(
-               'NAME'     => 'Math::MagicSquare',
-               'LINKTYPE' => '$(INST_PM)',
-               'VERSION_FROM'  => 'MagicSquare.pm',
-               'dist'     => { SUFFIX => 'gz', COMPRESS => 'gzip -f' },
-               'clean' 	  => {'FILES' => '*~'},
+WriteMakefile(
+	       AUTHOR       => 'Fabrizio Pivari (fabrizio@pivari.com)'
+               NAME         => 'Math::MagicSquare',
+               PREREQ_PM    => {
+            	'GD'	=> '0'
+                }
+               LINKTYPE     => '$(INST_PM)',
+               VERSION_FROM => 'MagicSquare.pm',
+               dist         => { SUFFIX => 'gz', COMPRESS => 'gzip -f' },
+               clean 	    => {'FILES' => '*~'},
 );

@@ -21,3 +21,6 @@ Added printimage("jpeg|png") to create magicsquare.jpg or magicsquare.png
 
 10/24/2003 Version 2.01
 GD is changed and printimage can save only png.
+
+10/24/2003 Version 2.02
+Added PREREQ_PM  => {'GD' => '0'} and AUTHOR in Makefile.PL
